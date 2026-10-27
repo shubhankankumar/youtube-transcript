@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Copy Transcript</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        width: 220px;
+        padding: 16px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: #0f0f0f;
+        color: #fff;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        background: #c00;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+      button:hover {
+        background: #a00;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: default;
+        background: #c00;
+      }
+      #status {
+        margin-top: 10px;
+        text-align: center;
+        font-size: 13px;
+        min-height: 20px;
+        word-break: break-word;
+      }
+      .error {
+        color: #ff4444;
+      }
+      .success {
+        color: #3ea6ff;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="copyBtn">📋 Copy Transcript</button>
+    <div id="status" role="status" aria-live="polite"></div>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

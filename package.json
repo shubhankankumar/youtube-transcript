@@ -1,0 +1,8 @@
+{
+  "name": "youtube-transcript-copy",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}
