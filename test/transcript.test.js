@@ -50,6 +50,7 @@ test("parseCaptions classic double-escaped format", () => {
 
 test("decode and format", () => {
   assert.equal(decode("&#x1F600;&#65;&bogus;&#99999999;"), "😀A&bogus;&#99999999;");
+  assert.equal(decode("&constructor; &__proto__;"), "&constructor; &__proto__;");
   assert.equal(
     formatTranscript([
       { start: 3725.9, text: "hi" },

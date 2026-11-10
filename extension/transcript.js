@@ -1,7 +1,7 @@
 // Pure helpers shared by the service worker and popup. No chrome.* here so Node tests can import it.
 
 const PREFERRED_LANGS = ["en", "hi"];
-const ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
+const ENTITIES = { __proto__: null, amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
 const SRV3_LINE = /<p\b[^>]*\bt="(\d+)"[^>]*>([\s\S]*?)<\/p>/g;
 const CLASSIC_LINE = /<text\b[^>]*\bstart="([\d.]+)"[^>]*>([\s\S]*?)<\/text>/g;
 
