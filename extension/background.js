@@ -63,7 +63,21 @@ chrome.commands.onCommand.addListener(async (command, tab) => {
   }
 });
 
-async function getTranscript(videoId) {
+// One promise per video: the popup's prefetch and the click share a request, and repeat copies are
+// instant. shortcut: unbounded, but the worker (and this map) dies after ~30s idle; add LRU if that changes.
+const cache = new Map();
+function getTranscript(videoId) {
+  if (!cache.has(videoId)) {
+    const p = fetchTranscript(videoId).catch((err) => {
+      cache.delete(videoId); // failures are retried on the next request
+      throw err;
+    });
+    cache.set(videoId, p);
+  }
+  return cache.get(videoId);
+}
+
+async function fetchTranscript(videoId) {
   if (!/^[\w-]{11}$/.test(videoId)) throw new Error("Invalid video ID");
   await rulesReady;
 
@@ -89,6 +103,7 @@ async function getTranscript(videoId) {
   if (url.protocol !== "https:" || url.hostname !== "www.youtube.com") {
     throw new Error("Unexpected caption URL");
   }
+  url.searchParams.set("fmt", "srv1"); // one <text> per line: ~60% smaller than srv3's per-word XML, same output
 
   const segments = parseCaptions(await fetchCaptionXml(url));
   if (!segments.length) throw new Error("Could not parse captions");

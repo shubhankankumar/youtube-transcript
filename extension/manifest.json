@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Copy Transcript",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "One-click copy YouTube video transcripts to your clipboard",
   "minimum_chrome_version": "116",
   "permissions": ["activeTab", "declarativeNetRequest", "scripting"],
